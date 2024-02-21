@@ -1,1 +1,7 @@
-click
+# These should ideally have specific version constraints
+erddapy
+xarray
+netcdf4
+rioxarray
+matplotlib
+numpy

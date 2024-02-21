@@ -9,5 +9,9 @@ def hello(count, name):
     for x in range(count):
         click.echo(f"Hello {name}!")
 
+    with open("output.txt", "w") as f:
+        # Writing data to a file
+        f.write(f"Hello {name}!")
+
 if __name__ == '__main__':
     hello()

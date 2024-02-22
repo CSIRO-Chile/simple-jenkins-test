@@ -1,7 +1,6 @@
-# These should ideally have specific version constraints
-erddapy
+numpy
+matplotlib
 xarray
 netcdf4
 rioxarray
-matplotlib
-numpy
+erddapy

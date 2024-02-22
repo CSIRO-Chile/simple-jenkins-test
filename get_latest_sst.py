@@ -7,6 +7,11 @@ from datetime import datetime, timedelta
 import matplotlib.pyplot as plt
 import numpy as np
 
+def copy_file_to_server(file_path, server_path):
+    # This function would copy a file to a server location
+    print(f"Copying {file_path} to {server_path}... (example only)")
+    pass
+
 def main():
     datums = {'geo': 'EPSG:4326', 'proj': 'EPSG:9377'}
 
@@ -54,10 +59,15 @@ def main():
     # Export the data to GeoTIFFs
     for datum, epsg in datums.items():
         for var in ds.data_vars:
-            print(var)
+            print(f"Exporting {var}...")
             if datum == 'proj' and ds.rio.crs == "EPSG:4326":
                 ds = ds.rio.reproject(epsg)
-            ds[var].rio.to_raster(f"{var}_{dt}_{datum}.tif")    
+            fname = f"{var}_{dt}_{datum}.tif"
+            ds[var].rio.to_raster(fname) 
 
+            server_location = f"/mnt/data/{var}_{dt}_{datum}.tif"
+            copy_file_to_server(fname, server_location)
+    print("Done!")
+    
 if __name__ == '__main__':
     main()
